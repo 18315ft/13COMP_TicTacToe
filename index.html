@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>13COMP Finn Thompson firebase</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="13COMP firebase">
+    <meta name="keywords" content="13COMP, firebase">
+    <meta name="author" content="????">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- stylesheets *****************************************-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  
+    <!-- firebase start **************************************-->
+    <!-- Firebase App (core Firebase SDK) is always required & must be listed 1st -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>  
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>  
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script> 
+    <!-- firebase end ****************************************-->
+
+    <!-- Your modules ****************************************-->
+    <script defer src="im_interfaceManager.js"></script>
+    <script defer src="fb_io.js"></script>
+    <script defer src="tt_ticTacToe.js"></script>
+    <script defer src="lb_lobbyManager.js"></script>
+    <script defer src="ac_accountManager.js"></script>
+</head>
+
+<!--*************************************************************
+//  BODY
+**************************************************************-->
+<body>
+
+  <!--*************************************************************
+  //  Register Page
+  **************************************************************-->
+  <div class="section" id="s_register">
+    
+    <form id="f_changeName" action="ac_setAccountDetails(this.form)" method="get">
+      <h2 id="h2_createAccount">Create account</h2>
+      <p>This name will be displayed when creating a lobby and when playing against someone else</p>
+      Name:<input type="text" name="name">
+      <input type="button" value="Set username" onclick="ac_setAccountDetails(this.form)">
+    </form>
+  </div>
+
+  <!--*************************************************************
+  //  Page Grid
+  **************************************************************-->
+  <div id="d_pageGrid">
+    <!--********** LEFT SCORE BOARD ***********-->
+    <div id="d_scoreBoard0"  class="scoreBoard">
+      <h1>Home</h1>
+      <p id="h2_playerName0">Name: Not signed in</p>
+      <h3>Stats:</h3>
+      <p id="p_playerWins0">Wins: 0</p>
+      <p id="p_playerLosses0">Losses: 0</p>
+      <p id="p_playerDraws0">Draws: 0</p>
+      <p id="p_playerWinRatio0">Win percent: 0%</p>
+      <button id="b_leave" onclick="lb_leaveGame(true)">Leave Game</button>
+    </div>
+
+    <!--***** ColumnGap ******-->
+    <div class="columnGap" id="d_columnGap0"></div>
+    
+    <!--************** Page Content ***************-->
+    <!-- Contains the lobby page and the game grid -->
+    <div id="d_pageContent">
+      <!--********************* Lobby Page *********************-->
+      <div class="section" id="s_lobbyPage">
+        <div id="d_lobbyList"></div>
+    
+        <button onclick="lb_createLobby()">Create lobby</button>
+        <button onclick="lb_checkLobbies()">Refresh</button>
+      </div>
+      
+      <!--*************** Game Page ***************-->
+      <div class="section" id="s_gamePage" style="display: none;">
+        <p id="p_textBox"></p>
+      
+        <!--***** TIC TAC TOE GRID ******-->
+        <div id="d_gameGrid">
+          <!-- ROW 1 start -->
+            <button id="b_gridButton0" class="gridButton" onclick="tt_gridClick(0)"></button>
+            <button id="b_gridButton1" class="gridButton" onclick="tt_gridClick(1)"></button>
+            <button id="b_gridButton2" class="gridButton" onclick="tt_gridClick(2)"></button>
+    
+          <!-- ROW 2 start -->
+            <button id="b_gridButton3" class="gridButton" onclick="tt_gridClick(3)"></button>
+            <button id="b_gridButton4" class="gridButton" onclick="tt_gridClick(4)"></button>
+            <button id="b_gridButton5" class="gridButton" onclick="tt_gridClick(5)"></button>
+    
+          <!-- ROW 3 start -->
+            <button id="b_gridButton6" class="gridButton" onclick="tt_gridClick(6)"></button>
+            <button id="b_gridButton7" class="gridButton" onclick="tt_gridClick(7)"></button>
+            <button id="b_gridButton8" class="gridButton" onclick="tt_gridClick(8)"></button>
+        </div>
+      </div>
+    </div>
+
+    <!--***** ColumnGap ******-->
+    <div class="columnGap" id="d_columnGap1"></div>
+  
+    <!--********** RIGHT SCORE BOARD ***********-->
+    <div id="d_scoreBoard1" class="scoreBoard">
+      <h1>Opposition</h1>
+      <p id="h2_playerName1">Name: Not in game</p>
+      <h3>Stats:</h3>
+      <p id="p_playerWins1">Wins: Not in game</p>
+      <p id="p_playerLosses1">Losses: Not in game</p>
+      <p id="p_playerDraws1">Draws: Not in game</p>
+      <p id="p_playerWinRatio1">Win percent: Not in game</p>
+    </div>
+  </div>
+    
+</body>
+</html>
